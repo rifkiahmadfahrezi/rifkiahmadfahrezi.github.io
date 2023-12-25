@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth scroll-pt-[50px]">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/ico" href="/favicon/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rifki Ahmad Fahrezi - Frontend Web Developer specializing in HTML, CSS, JavaScript, ReactJS, and Tailwind CSS.">
+    <meta name="keywords" content="Rifki Ahmad Fahrezi, Frontend Developer, HTML, CSS, JavaScript, ReactJS, Tailwind CSS, junior frontend web developer">
+    <meta name="author" content="Rifki Ahmad Fahrezi">
+    <meta name="robots" content="index, follow">
+    <meta name="og:title" content="Rifki Ahmad Fahrezi - Frontend Web Developer">
+    <meta name="og:description" content="Passionate frontend web developer skilled in HTML, CSS, JavaScript, ReactJS, and Tailwind CSS.">
+    <meta name="og:image" content="/favicon/favicon-32x32.png"> <!-- Add a relevant image URL -->
+    <meta name="og:url" content="https://rifkiaf.site">
+    <meta name="og:type" content="website">
+    <meta name="twitter:title" content="Rifki Ahmad Fahrezi - Frontend Web Developer">
+    <meta name="twitter:description" content="Passionate frontend web developer skilled in HTML, CSS, JavaScript, ReactJS, and Tailwind CSS.">
+    <!-- analitics -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JR181N0E3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4JR181N0E3');
+    </script>
+    <!-- icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,600;1,700&family=Sansita+Swashed:wght@300&display=swap" rel="stylesheet">
+    <!-- boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Rifki ahmad fahrezi - frontend web developer based in bandung indonesia</title>
+    <script type="module" crossorigin src="/assets/index-x8uYTjTH.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-2F9VQZk4.css">
+  </head>
+  <style>
+    #loader{
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      transition: all 1s;
+      display: grid;
+      place-items: center;
+      z-index: 9999;
+      background: rgb(2 6 23);
+      overflow: hidden;
+    }
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    #loader-text{
+      /* transition: all 500ms; */
+      z-index: 999;
+      font-family: 'IBM Plex Sans', sans-serif;
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: white;
+      transition: all 300ms;
+      animation: fadeup .7s alternate;
+    }
+    #loader-container{
+      width: 75%;
+      max-width: 500px;
+    }
+    #loader-bar-outer{
+      background: rgb(11, 60, 62);
+      border-radius: 9999px;
+      width: 100%;
+      height: 10px;
+      animation: fadeup .7s alternate;
+    }
+    @keyframes fadeup {
+      from{
+        transform: translateY(100%);
+        opacity: 0;
+      }to{
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    #loader-bar-inner{
+      height: 10px;
+      border-radius: 9999px;
+      width: 0%;
+      background: rgb(27, 179, 184);
+    }
+  </style>
+  <body class="overflow-x-hidden bg-slate-950 transition-all ease-linear duration-200">
+
+    <div id="loader" rel="preload">
+        <div id="loader-container">
+            <h1 id="loader-text">
+              <span id="loader-percentage">0</span>% 
+              <span><i class='bx bx-loader bx-spin'></i></span>
+            </h1>   
+          <div id="loader-bar-outer" >
+            <div id="loader-bar-inner" class="bg-slate-100"></div>
+          </div>
+        </div>
+    </div>
+
+    <div id="root"></div>
+    <script>
+      const loaderBar = document.querySelector('#loader-bar-inner')
+      const loaderText = document.querySelector('#loader-percentage')
+      const loaderWrapper = document.querySelector('#loader')
+      
+      // let loaded = 0
+      // setInterval(() => {
+      //   loaderBar.style.width = loaded++ + '%'
+      // }, 100)
+
+      const loaded = {
+        percentage: 0,
+        isLoaded: false
+      }
+
+      fetch(window.location.origin)
+      .then(res => {
+        const contentLength = res.headers.get('content-length')
+        
+
+        return new Response(
+          new ReadableStream({
+            start(controller){
+              const reader = res.body.getReader()
+              read()
+              function read(){
+                reader.read()
+                .then((progressEvent )=> {
+                  let loaderPercent = 0
+                  if(progressEvent.done){
+                    controller.close()
+                    return;
+                  }
+                  loaderPercent += progressEvent.value.byteLength
+                  loaded.percentage = getPercentage(loaderPercent,contentLength)
+                    setInterval(()=> {
+                      loaderBar.style.width = getPercentage(loaderPercent,contentLength) + '%'
+                      if(getPercentage(loaderPercent,contentLength) === 100 && !loaded.isLoaded){
+                        loaderText.innerText = '97'
+                        loaderBar.style.width = '97%'
+                      }else{
+                        loaderBar.style.width = getPercentage(loaderPercent,contentLength) + '%'
+                        loaderText.innerText = getPercentage(loaderPercent,contentLength)
+                      }
+                    }, 500)
+                  controller.enqueue(progressEvent.value)
+                  read()
+                })  
+              }
+            }
+          })
+        )
+
+      })
+
+      function getPercentage(a,b){
+        return Math.round((a / b) * 100)
+      }
+
+      window.addEventListener('load', () => {
+        if(loaded.percentage >= 100){
+          loaded.isLoaded = true
+          loaderWrapper.style.transform = 'translateY(-190%) '
+          loaderWrapper.style.top = '-50%'
+          setTimeout(() => loaderWrapper.remove() ,1300)
+        }
+      })
+</script>
+  </body>
+</html>
+ 
