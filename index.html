@@ -38,144 +38,65 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Rifki ahmad fahrezi - frontend web developer based in bandung indonesia</title>
   </head>
-  <style>
-    #loader{
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      transition: all 1s;
-      display: grid;
-      place-items: center;
-      z-index: 9999;
-      background: rgb(2 6 23);
-      overflow: hidden;
-    }
-    body{
+  <style rel="preload">
+    *{
       margin: 0;
       padding: 0;
     }
-    #loader-text{
-      /* transition: all 500ms; */
-      z-index: 999;
-      font-family: 'IBM Plex Sans', sans-serif;
-      text-align: center;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+    .preload{
+      height: 100vh;
+      width: 100vw;
+      background: rgb(2 6 23);
+      z-index: 9999;
+      position: fixed;
+      
+    }
+
+    .loaded{
+      animation: preload 2s alternate;
+    }
+
+    .loader{
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+
+    .wrapper p {
       color: white;
-      transition: all 300ms;
-      animation: fadeup .7s alternate;
+      text-align: center;
+      margin-top: -100px;
     }
-    #loader-container{
-      width: 75%;
-      max-width: 500px;
-    }
-    #loader-bar-outer{
-      background: rgb(11, 60, 62);
-      border-radius: 9999px;
-      width: 100%;
-      height: 10px;
-      animation: fadeup .7s alternate;
-    }
-    @keyframes fadeup {
-      from{
-        transform: translateY(100%);
-        opacity: 0;
-      }to{
-        transform: translateY(0);
-        opacity: 1;
+
+    @keyframes preload {
+      to{
+        transform: translateY(-200%);
       }
     }
-    #loader-bar-inner{
-      height: 10px;
-      border-radius: 9999px;
-      width: 0%;
-      background: rgb(27, 179, 184);
-    }
   </style>
-  <body class="overflow-x-hidden bg-slate-950 transition-all ease-linear duration-200">
+  <body class="overflow-x-hidden bg-slate-950">
+    <div class="preload">
+      <div class="loader">
+        <div class="wrapper">
+          <script rel="preload" src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
 
-    <div id="loader" rel="preload">
-        <div id="loader-container">
-            <h1 id="loader-text">
-              <span id="loader-percentage">0</span>% 
-              <span><i class='bx bx-loader bx-spin'></i></span>
-            </h1>   
-          <div id="loader-bar-outer" >
-            <div id="loader-bar-inner" class="bg-slate-100"></div>
-          </div>
+           <dotlottie-player rel="preload" src="https://lottie.host/b7a5e234-820d-47fc-af13-d63efcba341b/eVPkmEH0Rw.lottie" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+        <p>Loading...</p>
         </div>
+    </div>
     </div>
 
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      const loaderBar = document.querySelector('#loader-bar-inner')
-      const loaderText = document.querySelector('#loader-percentage')
-      const loaderWrapper = document.querySelector('#loader')
-      
-      // let loaded = 0
-      // setInterval(() => {
-      //   loaderBar.style.width = loaded++ + '%'
-      // }, 100)
+    <script rel="preload">
+      const preload = document.querySelector('.preload')
 
-      const loaded = {
-        percentage: 0,
-        isLoaded: false
-      }
+      window.addEventListener('DOMContentLoaded', () => {
+        preload.classList.add('loaded')
 
-      fetch(window.location.origin)
-      .then(res => {
-        const contentLength = res.headers.get('content-length')
-        
-
-        return new Response(
-          new ReadableStream({
-            start(controller){
-              const reader = res.body.getReader()
-              read()
-              function read(){
-                reader.read()
-                .then((progressEvent )=> {
-                  let loaderPercent = 0
-                  if(progressEvent.done){
-                    controller.close()
-                    return;
-                  }
-                  loaderPercent += progressEvent.value.byteLength
-                  loaded.percentage = getPercentage(loaderPercent,contentLength)
-                    setInterval(()=> {
-                      loaderBar.style.width = getPercentage(loaderPercent,contentLength) + '%'
-                      if(getPercentage(loaderPercent,contentLength) === 100 && !loaded.isLoaded){
-                        loaderText.innerText = '97'
-                        loaderBar.style.width = '97%'
-                      }else{
-                        loaderBar.style.width = getPercentage(loaderPercent,contentLength) + '%'
-                        loaderText.innerText = getPercentage(loaderPercent,contentLength)
-                      }
-                    }, 500)
-                  controller.enqueue(progressEvent.value)
-                  read()
-                })  
-              }
-            }
-          })
-        )
-
+        setTimeout(() => preload.remove(), 500)
       })
-
-      function getPercentage(a,b){
-        return Math.round((a / b) * 100)
-      }
-
-      window.addEventListener('load', () => {
-        if(loaded.percentage >= 100){
-          loaded.isLoaded = true
-          loaderWrapper.style.transform = 'translateY(-190%) '
-          loaderWrapper.style.top = '-50%'
-          setTimeout(() => loaderWrapper.remove() ,1300)
-        }
-      })
-</script>
+    </script>
   </body>
 </html>
  

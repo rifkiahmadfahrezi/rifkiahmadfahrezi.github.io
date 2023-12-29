@@ -14,6 +14,8 @@ export default function About(){
 
         gsap.registerPlugin(ScrollTrigger)
 
+
+
         return(
             <>
                 <section id="about" data-scroll-section className='w-full py-14 min-h-screen'>

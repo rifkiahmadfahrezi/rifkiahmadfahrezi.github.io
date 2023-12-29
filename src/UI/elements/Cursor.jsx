@@ -1,11 +1,9 @@
-import { transform } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
 
 
 export default function Cursor(){
         const cursorRef = useRef() 
         const cursorLogoRef = useRef()
-        const logoImgRef = useRef()
         
         useEffect(() => {
 

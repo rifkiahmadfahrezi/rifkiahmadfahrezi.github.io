@@ -6,7 +6,6 @@ export default function Hero(){
     const name2Ref = useRef()
     const name3Ref = useRef()
     const aboutTextRef = useRef()
-    const scrollContainer = useRef()
 
     function animateText(target,duration){
         gsap.fromTo(target, {

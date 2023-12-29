@@ -10,20 +10,18 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@lottiefiles/react-lottie-player": "^3.5.3",
+    "aos": "^3.0.0-beta.6",
     "autoprefixer": "^10.4.16",
-    "framer-motion": "^10.16.16",
     "gsap": "^3.12.4",
-    "locomotive-scroll": "^4.1.4",
     "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-locomotive-scroll": "^0.2.2",
     "react-lottie": "^1.2.3",
     "tailwindcss": "^3.4.0"
   },
