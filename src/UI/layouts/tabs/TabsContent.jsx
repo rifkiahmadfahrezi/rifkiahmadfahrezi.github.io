@@ -3,29 +3,31 @@ import React from 'react'
 
 import { getRandomImg } from '@/utils/helper'
 import Loading from '@/UI/animations/Loading'
-import Link from '@/UI/elements/Link'
+import Link from '@/UI/elements/Anchor'
 
 
 export default function TabsContent({types = "HTML", data = [], isLoading = true}){
 
         return(
             <>
-                <div className="rounded-b-xl bg-white/50 transition-all duration-500 min-w-[300px] backdrop-blur-md p-3 " >
-                    <div className="grid grid-cols-autofit gap-3 overflow-hidden">
+                <div className="rounded-b-xl bg-white/10 transition-all w-full duration-500 backdrop-blur-md p-3 " >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 overflow-hidden">
                         {data?.length > 0 && !isLoading ? 
                             data.map((item,i) => {
                                 return (
-                                    <figure key={i} className="w-full group relative rounded-lg overflow-hidden after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-t after:from-black after:to-transparent after:left-0  after:bottom-0  after:transition-all after:duration-150">
-                                        <div className="w-full bg-[url(/img/placeholder/placeholder.webp)] bg-center">
-                                            <img src={item.image ?? getRandomImg('programming')} className='object-cover w-full h-[300px] object-center' alt="" loading='lazy'/>
+                                    <figure key={i} className="group min-w-[250px] relative rounded-lg after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-t after:from-black after:to-transparent after:left-0  after:bottom-0  after:transition-all after:duration-150">
+                                        <div className="bg-[url(/img/placeholder/placeholder.webp)] bg-center">
+                                            <img    
+                                                src={item.image ?? getRandomImg('programming')} 
+                                                className='object-cover w-full block h-[300px] object-center' alt="" loading='lazy'/>
                                         </div>
 
-                                        <figcaption className='absolute left-6 bottom-0 z-[1] group-hover:md:translate-y-0 group-hover:md:opacity-100 transition-all  max-w-fit duration-300 '>
-                                            <h1 className="text-white whitespace-nowrap text-ellipsis overflow-hidden text-xl sm:text-2xl md:text-4xl capitalize font-ibmsans font-bold mb-5">
+                                        <figcaption className='absolute bottom-0 left-3 z-[1]'>
+                                            <h1 className="text-white whitespace-nowrap max-w-fit text-ellipsis overflow-hidden text-xl sm:text-2xl md:text-4xl capitalize font-ibmsans font-bold mb-5">
                                                 {item.projectName.split('-').join(' ')}
                                             </h1>
-                                        <div className="w-full md:w-3/4">  
-                                            <p className=' text-white text-sm sm:text-md md:text-lg text-ellipsis'>
+                                        <div className="">  
+                                            <p className=' text-white text-sm sm:text-md md:text-lg line-clamp-2 group-hover:line-clamp-none transition-all duration-300'>
                                                 {item.description ?? 'no description'}
                                             </p>
                                         </div>

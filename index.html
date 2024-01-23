@@ -15,16 +15,6 @@
     <meta name="og:type" content="website">
     <meta name="twitter:title" content="Rifki Ahmad Fahrezi - Frontend Web Developer">
     <meta name="twitter:description" content="Passionate frontend web developer skilled in HTML, CSS, JavaScript, ReactJS, and Tailwind CSS.">
-    <!-- analitics -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JR181N0E3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-4JR181N0E3');
-    </script>
     <!-- icon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -38,65 +28,13 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Rifki ahmad fahrezi - frontend web developer based in bandung indonesia</title>
   </head>
-  <style rel="preload">
-    *{
-      margin: 0;
-      padding: 0;
-    }
-    .preload{
-      height: 100vh;
-      width: 100vw;
-      background: rgb(2 6 23);
-      z-index: 9999;
-      position: fixed;
-      
-    }
-
-    .loaded{
-      animation: preload 2s alternate;
-    }
-
-    .loader{
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-    }
-
-    .wrapper p {
-      color: white;
-      text-align: center;
-      margin-top: -100px;
-    }
-
-    @keyframes preload {
-      to{
-        transform: translateY(-200%);
-      }
-    }
-  </style>
   <body class="overflow-x-hidden bg-slate-950">
-    <div class="preload">
-      <div class="loader">
-        <div class="wrapper">
-          <script rel="preload" src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-
-           <dotlottie-player rel="preload" src="https://lottie.host/b7a5e234-820d-47fc-af13-d63efcba341b/eVPkmEH0Rw.lottie" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
-        <p>Loading...</p>
-        </div>
+    <div id="preloader" style="width: 100vw; height: 100vh; display: grid; place-items: center; overflow: hidden;">
+      <h1>Loading...</h1>
     </div>
-    </div>
-
     <div id="root"></div>
+    <script>window.addEventListener('DOMContentLoaded', document.querySelector('#preloader').remove())</script>
     <script type="module" src="/src/main.jsx"></script>
-    <script rel="preload">
-      const preload = document.querySelector('.preload')
-
-      window.addEventListener('DOMContentLoaded', () => {
-        preload.classList.add('loaded')
-
-        setTimeout(() => preload.remove(), 500)
-      })
-    </script>
   </body>
 </html>
  

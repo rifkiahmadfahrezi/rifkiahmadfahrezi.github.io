@@ -1,10 +1,22 @@
-import React from 'react'
+import React , { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './components/pages/App'
 import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const App = lazy(() => import('./components/pages/App'))
+import Preloader from './UI/preloader'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Suspense fallback={<Preloader/> }>
+                <App />
+            </Suspense>,
+  }
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-        <App />
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )

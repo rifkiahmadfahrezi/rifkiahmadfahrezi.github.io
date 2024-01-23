@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import NavThemeToggler from '@/UI/fragments/navbar/NavThemeToggler'
 import NavMenu from '@/UI/fragments/navbar/NavMenu'
@@ -11,11 +11,19 @@ export default function Navbar(){
         function menuToggler(){
             menuOpen ? setMenuOpen(false) : setMenuOpen(true)
         }
-
-
-        window.addEventListener('load', () => {
+        
+        useEffect(() => {
             window.innerWidth <= 768 ? setMenuOpen(false) : setMenuOpen(true)
+        }, [])
+
+
+        document.addEventListener('load', () => {
+            window.innerWidth <= 768 ? setMenuOpen(false) : setMenuOpen(true)
+            // alert('ok')
         })
+
+
+        
         window.addEventListener('resize', () => {
             window.innerWidth <= 768 ? setMenuOpen(false) : setMenuOpen(true)
         })

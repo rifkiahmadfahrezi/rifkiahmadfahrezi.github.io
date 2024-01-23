@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Link from '@/UI/elements/Link'
+import Link from '@/UI/elements/Anchor'
 
 export default function TextContainer({className, children}){
         return(

@@ -57,7 +57,7 @@ export default function ContactForm(){
         return(
             <>
             {error.isError && <div onClick={() => setError({isError:false})} className='cursor-pointer text-center bg-red-500 text-white py-2 rounded-md text-md'>{error.message}</div>    }  
-            {loadingEmail ?  <div className="w-[200px] h-200px"><Email /></div> :
+            {loadingEmail ?  <div className="w-[200px] h-200px text-white">Sending email...</div> :
              
                 <form ref={formRef} action="flex flex-col" onSubmit={sendMessageHandler} className='w-[calc(100vw-100px)] sm:max-w-[300px] md:max-w-[450px] xl:max-w-[600 text-blackpx]'>
                     <input type="hidden" name="to_name" value={'rifki'} />

@@ -7,7 +7,7 @@ export default function TabButton({text = 'null', clickHandler, activeTab}){
             <>
                 <li onClick={(e) => clickHandler(e)} 
                     data-lang={text}
-                    className={`w-full md:w-auto custom-cursor custom-cursor cc-link  text-white backdrop-blur-md rounded-t-lg ${activeTab == text ? 'hover:bg-white/30  bg-white/50' : 'hover:bg-white/10  bg-white/20'}`}>
+                    className={`w-full md:w-auto custom-cursor custom-cursor cc-link  text-white backdrop-blur-md rounded-t-lg ${activeTab == text ? 'hover:bg-white/10  bg-white/10' : 'hover:bg-white/10  bg-white/20'}`}>
                     <button 
                         data-lang={text}
                         role='button'

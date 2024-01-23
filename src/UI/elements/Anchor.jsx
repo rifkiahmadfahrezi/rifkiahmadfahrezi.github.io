@@ -1,15 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
-export default function Link({label, href, className, children,}){
+export default function Anchor({label, href, className, children,}){
         return(
             <>
-                <a 
+                <Link 
                     target='_blank'
                     aria-label={label}
-                    href={href} 
+                    to={href} 
                     className={`font-semibold underline text-white ${className}`}>
-                    {children}</a>
+                    {children}</Link>
             </>
         )
 }

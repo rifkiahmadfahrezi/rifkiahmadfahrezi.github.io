@@ -1,13 +1,20 @@
-import React, { lazy, useState,Suspense, useEffect } from 'react'
+import React, { lazy, useState, useEffect } from 'react'
 
-const ContactModal = lazy(() => import('./ContactModal'))
-
+import ContactModal from './ContactModal'
 export default function ContactSection(){
         const [ isModalOpen, setIsModalOpen ] = useState(false)
 
         function toggleModal(){
             isModalOpen ? setIsModalOpen(false) : setIsModalOpen(true)
         }
+
+        useEffect(() => {
+            if(isModalOpen){
+                document.body.classList.add('overflow-y-hidden')
+            }else{
+                document.body.classList.remove('overflow-y-hidden')
+            }
+        }, [isModalOpen])
 
         return(
             <>
@@ -46,9 +53,7 @@ export default function ContactSection(){
                 </section>
 
                 {isModalOpen && 
-                    <Suspense>
-                        <ContactModal isModalOpen={isModalOpen} modalToggleHandler={toggleModal}/>   
-                    </Suspense>
+                    <ContactModal isModalOpen={isModalOpen} modalToggleHandler={toggleModal}/>   
                 }
             </>
         )
