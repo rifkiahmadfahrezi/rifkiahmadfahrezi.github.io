@@ -4,47 +4,36 @@ import TabsContent from './TabsContent'
 import { getProjects } from '@/data/projects'
 import TabButtonContainer from '@/UI/fragments/tabs/TabButtonContainer'
 import TabButton from '@/UI/fragments/tabs/TabButton'
+import axios from 'axios'
 
 export default function Tabs(){
         
     const [data, setData] = useState([])
-    const [ langs, setLangs] = useState([])
     const [ activeTab, setActiveTab ] = useState('HTML')
     const [ isLoading, setIsLoading] = useState(true)
     
-    function getAllProjects(tab){
-        getProjects((status, response) => {
-            
-            if(status){
-                const filteredData = response.filter(item => item.languange === tab).slice(0,4).sort()
-                const rmDuplicate = response.filter((item, index, self) =>
-                    !self.some((subItem, subIndex) =>
-                    subItem.languange === item.languange && subIndex < index
-                    )
-                )
-                const lang = rmDuplicate.map(item => item.languange)
+    async function getAllProjects(tab){
+        try{
+            const response = await axios.get(`https://my-json-server.typicode.com/rifkiahmadfahrezi/rifkiahmadfahrezi.github.io/db`)
+            const data = response.data
+
+            const { projects } = data
+
+            if(response.status === 200){
+                // console.log(projects)
+                // const filteredData = projects.filter(item => item.languange === tab).slice(0,4).sort()
+                // setData(filteredData)
+
+                setData(projects)
                 
-                const randomDelayTime = Math.round(Math.random * 1500) + 500
-
-                setLangs(lang)
-                setData([])
-                setTimeout(() => {
-                    setData(filteredData)
-                }, randomDelayTime)
                 setIsLoading(false)
-            }else{
-                console.error(response)
             }
-        })
-    }
-
-    useState(() => {
-        if(data.length <= 0){
-            setIsLoading(true)
-        }else{
+            
+        }catch(error){
             setIsLoading(false)
+            console.error(error)
         }
-    }, [data])
+    }
     
     useEffect(() => {
         getAllProjects(activeTab)
@@ -58,19 +47,19 @@ export default function Tabs(){
         return(
             <>
             <div className="w-full">
-                <TabButtonContainer>
-                    {langs.length > 0 ? 
-                        langs.map((item,i) => {
+                {/* <TabButtonContainer>
+                    {data?.length > 0 ? 
+                        data.map((item,i) => {
                             return (
                             <TabButton 
                                 key={i} 
-                                text={item} 
+                                text={item.languange} 
                                 clickHandler={changeTabHandler}
                                 activeTab={activeTab}/>
                             )
                         })
                     : null}
-                </TabButtonContainer>
+                </TabButtonContainer> */}
                 
                 <TabsContent data={data} isLoading={isLoading}/>
            </div>

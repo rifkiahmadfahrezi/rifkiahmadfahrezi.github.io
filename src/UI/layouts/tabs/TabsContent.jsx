@@ -10,12 +10,12 @@ export default function TabsContent({types = "HTML", data = [], isLoading = true
 
         return(
             <>
-                <div className="rounded-b-xl bg-white/10 transition-all w-full duration-500 backdrop-blur-md p-3 " >
+                <div className="rounded-xl" >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 overflow-hidden">
                         {data?.length > 0 && !isLoading ? 
                             data.map((item,i) => {
                                 return (
-                                    <figure key={i} className="group min-w-[250px] relative rounded-lg after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-t after:from-black after:to-transparent after:left-0  after:bottom-0  after:transition-all after:duration-150">
+                                    <figure key={i} className="overflow-hidden group min-w-[250px] relative rounded-md after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-t after:from-black after:to-transparent after:left-0  after:bottom-0  after:transition-all after:duration-150">
                                         <div className="bg-[url(/img/placeholder/placeholder.webp)] bg-center">
                                             <img    
                                                 src={item.image ?? getRandomImg('programming')} 
@@ -30,6 +30,7 @@ export default function TabsContent({types = "HTML", data = [], isLoading = true
                                             <p className=' text-white text-sm sm:text-md md:text-lg line-clamp-2 group-hover:line-clamp-none transition-all duration-300'>
                                                 {item.description ?? 'no description'}
                                             </p>
+                                            <p className='py-1 my-2 px-3 bg-white/10 max-w-fit border-white rounded-md text-white text-sm sm:text-md md:text-lg'>{item.languange}</p>
                                         </div>
 
                                             <div className="my-5">
