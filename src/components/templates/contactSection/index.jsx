@@ -37,7 +37,7 @@ export default function ContactSection(){
                                         className='text-5xl text-slate-300 hover:text-white custom-cursor'
                                         target='_blank'
                                         aria-label="visit my instagram"
-                                        href="https://www.instagram.com/rifkii_30/"
+                                        href="https://www.instagram.com/nekode.id/"
                                     ><i className='bx bxl-instagram custom-cursor'></i></a>
                                     <a 
                                         className='text-5xl text-slate-300 hover:text-white custom-cursor'
@@ -45,6 +45,12 @@ export default function ContactSection(){
                                         aria-label="visit my medium"
                                         href="https://rifkiaf.medium.com/"
                                     ><i className='bx bxl-medium custom-cursor'></i></a>
+                                    <a 
+                                        className='text-5xl text-slate-300 hover:text-white custom-cursor'
+                                        target='_blank'
+                                        aria-label="visit my linkedin"
+                                        href="https://www.linkedin.com/in/rifki-ahmad-fahrezi"
+                                    ><i className='bx bxl-linkedin custom-cursor'></i></a>
                                 </div>
                             </div>
                         </div>
