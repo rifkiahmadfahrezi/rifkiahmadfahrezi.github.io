@@ -4,6 +4,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const App = lazy(() => import('./components/pages/App'))
+const ContactPage = lazy(() => import('./components/pages/ContactPage'))
 import Preloader from './UI/preloader'
 
 const router = createBrowserRouter([
@@ -12,7 +13,14 @@ const router = createBrowserRouter([
     element: <Suspense fallback={<Preloader/> }>
                 <App />
             </Suspense>,
-  }
+  },
+  {
+    path: '/contact',
+    element: <Suspense fallback={<Preloader/> }>
+                <ContactPage  />
+            </Suspense>,
+  },
+
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

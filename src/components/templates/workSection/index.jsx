@@ -1,10 +1,10 @@
 import React from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// import { gsap } from 'gsap'
+// import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import SectionTitle from '@/UI/elements/SectionTitle'
 import WorkSectionText from '@/UI/fragments/works/WorkSectionText'
-import Card from '@/UI/layouts/card'
+// import Card from '@/UI/layouts/card'
 import TextContainer from '@/UI/layouts/textContainer'
 import Tabs from '@/UI/layouts/tabs'
 
